@@ -1,0 +1,50 @@
+time-o(nlogn) and space -o(1)
+public class Main
+{   public static boolean anagram(String s,String t){
+     if(s.length()!=t.length()) return false;
+        char[] p=s.toCharArray();
+        char[] q=t.toCharArray();
+        Arrays.sort(p);
+        Arrays.sort(q);
+        int n=s.length();
+        for(int i=0;i<n;i++){
+            if(p[i]!=q[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+     
+	public static void main(String[] args) {
+	    String s = "cat";
+	    String t = "act";
+	    System.out.println(anagram(s,t));
+	
+	}
+}
+import java.util.*;
+public class Main
+{   public static boolean anagram(String s,String t){
+     if(s.length()!=t.length()) return false;
+     int n=s.length();
+        int[] frequency=new int[26];
+        for(int i=0;i<n;i++){
+            frequency[s.charAt(i)-'a']++;
+            frequency[t.charAt(i)-'a']--;
+        }
+        for(int i=0;i<26;i++){
+            if(frequency[i]==0){
+                return false;
+            }
+        }
+        return true;
+}
+     
+	public static void main(String[] args) {
+	    String s = "cat";
+	    String t = "act";
+	    System.out.println(anagram(s,t));
+	
+	}
+}
+//time -o(n) and space -0(26)
