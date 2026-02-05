@@ -1,4 +1,4 @@
-//time-o(n) and space-o(n)-> we are using strind builder 
+//time-o(n) and space-o(n)-> we are using string builder 
 public class Main
 {   public static String Reversewords(String s){
 		  String[] splitedstring=s.split(" ");
