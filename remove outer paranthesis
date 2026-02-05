@@ -1,0 +1,26 @@
+public class Main
+{   public static String removeouterstring(String s){
+		    int counter=0;
+		    StringBuilder result=new StringBuilder();
+		    for(char c:s.toCharArray()){
+		    if(c=='('){
+		        if(counter>0){
+		           result.append(c); 
+		        }
+		      counter++;
+		    }
+		    else if(c==')'){
+		        counter--;
+		        if(counter>0) result.append(c);
+		    }
+		   }
+		   return result.toString();
+	    }
+	public static void main(String[] args) {
+	    String s = "((()))";
+	    System.out.println(removeouterstring(s));
+	
+	}
+}
+//time-o(n)
+//space-o(1)
