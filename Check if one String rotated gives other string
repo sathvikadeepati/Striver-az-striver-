@@ -1,0 +1,37 @@
+//time complexity-0(n2) and space-o(n)-> for string stored
+public class Main
+{   public static boolean IsomorphicString(String s,String t){
+     if(s.length()!=t.length()) return false;
+     for(int i=0;i<s.length();i++){
+         String rotated=s.substring(i)+s.substring(0,i);
+         if(rotated.contains(t)){
+            return true;
+         }
+     }
+     return false;
+	}
+	public static void main(String[] args) {
+	    String s = "rotation";
+	    String goal = "tionrota";
+	    System.out.println(IsomorphicString(s,goal));
+	
+	}
+}
+//time complexity-o(n) and space -o(n)
+public class Main
+{   public static boolean IsomorphicString(String s,String t){
+     if(s.length()!=t.length()) return false;
+         String rotated=s+s;
+         if(rotated.contains(t)){
+            return true;
+         }
+     return false;
+    }
+     
+	public static void main(String[] args) {
+	    String s = "rotation";
+	    String goal = "tionrota";
+	    System.out.println(IsomorphicString(s,goal));
+	
+	}
+}
