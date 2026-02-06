@@ -1,0 +1,25 @@
+time-o(n) and space-o(1)
+public class Main
+{
+    private static int depthofparanthesis(String s){
+        int counter=0;
+        int maxdepth=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                counter+=1;
+                if(counter>maxdepth){
+                    maxdepth=counter;
+                }
+            }
+            else if(s.charAt(i)==')'){
+                counter-=1;
+            }
+        }
+        return maxdepth;
+        
+    }
+	public static void main(String[] args) {
+	    String s="(1)+((2))+((((3))))";
+		System.out.print(depthofparanthesis(s));
+	}
+}
