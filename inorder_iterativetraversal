@@ -1,0 +1,43 @@
+import java.util.*;
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    public TreeNode(int val){
+        this.left=null;
+        this.right=null;
+        this.val=val;
+        
+    }
+    
+}
+public class Main
+{
+    private static List<Integer> iterative_inorder(TreeNode root){
+        Stack<TreeNode>st=new Stack<>();
+        ArrayList<Integer> li=new ArrayList<>();
+        if(root==null) return li;
+        TreeNode curr=root;
+        while(curr!=null || !st.isEmpty()){
+            while(curr!=null){
+            st.push(curr);
+            curr=curr.left;
+           }
+           TreeNode node=st.pop();
+           li.add(node.val);
+           curr=node.right;
+        }
+        return li;
+    }
+	public static void main(String[] args) {
+		 TreeNode root=new TreeNode(1);
+		 root.left=new TreeNode(2);
+		 root.right=new TreeNode(3);
+		 root.left.left=new TreeNode(4);
+		 root.left.right=new TreeNode(5);
+		 System.out.println(iterative_inorder(root));
+		 
+	}
+}
+time-o(n)
+space-o(n)+o(n);
