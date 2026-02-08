@@ -1,0 +1,61 @@
+time-O(2n) and space-o(n)
+import java.util.*;
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    public TreeNode(int val){
+        this.left=null;
+        this.right=null;
+        this.val=val;
+        
+    }
+    
+}
+public class Main
+{
+    private static List<Integer> iterative_postorder1stack(TreeNode root){
+    Stack<TreeNode> st = new Stack<>();
+    ArrayList<Integer> li = new ArrayList<>();
+    if (root == null) return li;
+
+    TreeNode current = root;
+    TreeNode temp = null;
+
+    while (current != null || !st.isEmpty()) {
+
+        if (current != null) {
+            st.push(current);
+            current = current.left;
+        } 
+        else {
+            TreeNode peek = st.peek();
+            temp = peek.right;
+
+            if (temp == null) {
+                temp = st.pop();
+                li.add(temp.val);
+
+                while (!st.isEmpty() && temp == st.peek().right) {
+                    temp = st.pop();
+                    li.add(temp.val);
+                }
+            } 
+            else {
+                current = temp;
+            }
+        }
+    }
+    return li;
+}
+
+	public static void main(String[] args) {
+		 TreeNode root=new TreeNode(1);
+		 root.left=new TreeNode(2);
+		 root.right=new TreeNode(3);
+		 root.left.left=new TreeNode(4);
+		 root.left.right=new TreeNode(5);
+		 System.out.println(iterative_postorder1stack(root));
+		 
+	}
+}
