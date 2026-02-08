@@ -1,0 +1,47 @@
+Time Complexity: O(N)
+Space Complexity: O(N) because the queue can store all nodes of a level and the output list stores N elements.
+import java.util.*;
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    public TreeNode(int val){
+        this.left=null;
+        this.right=null;
+        this.val=val;
+        
+    }
+    
+}
+public class Main
+{
+    private static List<Integer> bfs(TreeNode root){
+        ArrayList<Integer> l=new ArrayList<>();
+        if(root==null) return l;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size=q.size();
+            for(int i=0;i<size;i++){
+                TreeNode node=q.poll();
+                l.add(node.val);
+                if(node.left!=null){
+                    q.add(node.left);
+                }
+                if(node.right!=null){
+                    q.add(node.right);
+                }
+            }
+        }
+        return l;
+        
+    }
+	public static void main(String[] args) {
+		 TreeNode root=new TreeNode(1);
+		 root.left=new TreeNode(2);
+		 root.right=new TreeNode(3);
+		 root.left.left=new TreeNode(4);
+		 root.left.right=new TreeNode(5);
+		 System.out.println(bfs(root));
+	}
+}
