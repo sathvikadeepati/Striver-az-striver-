@@ -1,0 +1,50 @@
+time-o(n)-for st1 and o(n) for st2 to print 
+space-o(n)+o(n)-recursive stack and space for stacks 
+import java.util.*;
+class TreeNode{
+    int val;
+    TreeNode left;
+    TreeNode right;
+    public TreeNode(int val){
+        this.left=null;
+        this.right=null;
+        this.val=val;
+        
+    }
+    
+}
+public class Main
+{
+    private static List<Integer> iterative_postorder2stack(TreeNode root){
+        Stack<TreeNode>st1=new Stack<>();
+        Stack<TreeNode>st2=new Stack<>();
+        ArrayList<Integer> li=new ArrayList<>();
+        if(root==null) return li;
+        st1.push(root);
+        while(!st1.isEmpty()){
+            TreeNode node=st1.pop();
+            st2.push(node);
+            if(node.left!=null){
+                st1.push(node.left);
+            }
+            if(node.right!=null){
+                st2.push(node.right);
+            }
+        }
+        while(!st2.isEmpty()){
+            li.add(st2.pop().val);
+        }
+        return li;
+        
+        
+    }
+	public static void main(String[] args) {
+		 TreeNode root=new TreeNode(1);
+		 root.left=new TreeNode(2);
+		 root.right=new TreeNode(3);
+		 root.left.left=new TreeNode(4);
+		 root.left.right=new TreeNode(5);
+		 System.out.println(iterative_postorder2stack(root));
+		 
+	}
+}
