@@ -1,0 +1,30 @@
+time-o(n+n) space-o(1)
+class Solutions{
+public static int findmiddleelement(ListNode head){
+   int count=0;
+   ListNode curr=head;
+   while(curr!=null){
+    count+=1;
+    curr=curr.next;
+   }
+   int len=count/2;
+   curr=head;
+   for(int i=0;i<len;i++){
+      curr=curr.next;
+   }
+   return curr.val;
+}
+}
+time-o(n)
+space-o(1)
+class Solutions{
+ public static ListNode findmiddleelement(ListNode head){
+  ListNode slow=head;
+  ListNode fast=head;
+  while(fast!=null && fast.next!=null){
+     slow=slow.next;
+     fast=fast.next.next;
+   }
+   return slow;
+  }
+}
