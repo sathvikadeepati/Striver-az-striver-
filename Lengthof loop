@@ -1,0 +1,40 @@
+time-o(N)
+space-O(n)
+class Solution{
+  public static int lengthofloop(ListNode head){
+     HashMap<ListNode,Integer> mp=new HashMap<>();
+     ListNode curr=head; 
+     int steps=0;
+     while(curr!=null){
+        if(mp.containsKey(curr)){
+           return steps-mp.get(curr);
+        }
+        mp.put(curr,steps);
+        steps+=1;
+        curr=curr.next;
+     }
+    return 0;
+  }
+}
+optimal -o(n)
+space-o(1)
+class Solutions{
+   public static int Lengthofloop(ListNode head){
+      ListNode slow=head;
+      ListNode fast=head;
+      while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
+        if(slow==fast){
+           int count=1;
+           fast=fast.next;
+           while(slow!=fast){
+              count+=1;
+              fast=fast.next;
+           }
+          return count;
+        }
+     }
+return 0;
+  }
+}
