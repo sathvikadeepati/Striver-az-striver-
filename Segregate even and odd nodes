@@ -1,0 +1,58 @@
+time-o(n)
+space-o(N)
+class  Solution{
+  public static ListNode segregateevenandoddnodes(ListNode head){
+      ListNode curr=head;
+      ArrayList<Integer> a=new ArrayList<>();
+      while(curr!=null){
+         a.add(curr.val);
+         if (curr.next == null) break;
+         curr=curr.next.next;
+      }
+      curr=head.next;
+      while(curr!=null){
+       a.add(curr.val);
+       if (curr.next == null) break;
+       curr=curr.next.next;
+      }
+    curr=head;
+    int i=0;
+    while(curr!=null){
+        curr.val=a.get(i++);
+        curr=curr.next;
+    }
+
+
+return head;
+}
+}
+time-o(N)
+space-O(1)
+class Solution{
+  public static ListNode segregateoddandevennodes(ListNode head){
+     ListNode odd=head;
+     ListNode even=head.next;
+     ListNode evenhead=even;
+     while(even!=null && even.next!=null){
+        odd.next=even.next;
+        odd=odd.next;
+        even.next=odd.next;
+        even=even.next;
+     }
+    odd.next=evenhead;
+    return head;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}
