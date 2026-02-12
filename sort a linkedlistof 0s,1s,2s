@@ -1,0 +1,38 @@
+time-o(n)
+space-o(1)
+class Solution{
+ public static ListNode sort0s1s2s(ListNode head){
+     ListNode zerodummy=new ListNode(-1);
+     ListNode onedummy=new ListNode(-1);
+     ListNode twodummy=new ListNode(-1);
+     ListNode zero=zerodummy;
+     ListNode one=onedummy;
+     ListNode two=twodummy;
+     ListNode curr=head;
+     while(curr!=null){
+        if(curr.val==0){
+            zero.next=curr;
+            zero=zero.next;
+         }
+        else if(curr.val==1){
+           one.next=curr;
+           one=one.next;
+        }
+        else{
+          two.next=curr;
+          two=two.next;
+        }
+        curr=curr.next;
+      }
+      zero.next=(onedummy.next!=null)?onedummy.next:twodummy.next;
+      one.next=twodummy.next;
+      two.next=null;
+      return zerodummy.next;
+ }
+
+
+
+
+
+
+}
