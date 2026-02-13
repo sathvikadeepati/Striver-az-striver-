@@ -1,0 +1,35 @@
+time-o(n+n+n) ==o(N)
+space=o(1)
+class Solution{
+public static ListNode reverselist(ListNode head){
+   ListNode curr=head;
+   ListNode prev=null;
+   while(curr!=null){
+     ListNode front=curr.next;
+     curr.next=prev;
+     prev=curr;
+     curr=front;
+   }
+ return prev;
+}
+  public static ListNode add1tolinkdlist(ListNode head){
+      head=reverselist(head);
+      ListNode curr=head;
+      int  carry=1;
+      while(curr!=null && carry>0){
+         int sum=curr.val+carry;
+          curr.val=sum%10;
+          carry=sum/10;
+          if(carry==0) break;
+          explanation 1->2->3 reverse we get 3->2->1 add 1 we get 4->2->1
+          explanation for 2 test case suppose we have 9->9->9-> we get 0->0->0-> curr.nxt==null but we have carry=1 so we have to write this case 
+          if(curr.next==null &&carry>0){
+             curr.next=new ListNode(carry);
+             carry=0;
+             break;
+          }
+          curr=curr.next;
+      }
+    return reverselist(head);
+ }
+}
