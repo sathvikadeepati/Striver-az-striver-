@@ -1,0 +1,43 @@
+class Solution {
+    public Node intersectPoint(Node head1, Node head2) {
+        code here
+        bruteforce -timecomplexitty=O(n*m) o(1)
+        Node curr1=head1;
+        while(curr1!=null){
+            Node curr2=head2;
+            while(curr2!=null){
+                if(curr1==curr2){
+                    return curr1;
+                }
+                curr2=curr2.next;
+            }
+          curr1=curr1.next;
+        }
+        return null;
+        ---time -o(n+m) ,o(n) better appraoch
+        HashSet<Node> s=new HashSet<>();
+        Node curr1=head1;
+        while(curr1!=null){
+            s.add(curr1);
+            curr1=curr1.next;
+        }
+        Node curr2=head2;
+        while(curr2!=null){
+            if(s.contains(curr2)){
+                return curr2;
+            }
+            curr2=curr2.next;
+        }
+        return null;
+        optimal twopointers 
+        Node tempA=head1;
+        Node tempB=head2;
+        while(tempA!=tempB){
+            tempA=tempA==null?head2:tempA.next;
+            tempB=tempB==null?head1:tempB.next;
+        }
+        return tempA;
+        
+        
+    }
+}
