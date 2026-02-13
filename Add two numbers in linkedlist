@@ -1,0 +1,38 @@
+time-o(max(m,n))
+space-o(max(m,n))-in worst the dummy stores all max(m,n) elements
+class Solution{
+   public static ListNode reverselinkedlist(ListNode head){
+      ListNode curr=head;
+      ListNode prev=null;
+      while(curr!=null){
+          ListNode front=curr.next;
+          curr.next=prev;
+          prev=curr;
+          curr=front;
+     }
+     return prev;
+   }
+   public static ListNode addtwonumber(ListNode head1,ListNode head2){
+        ListNode dummy=new ListNode(-1);
+        ListNode temp=dummy;
+        head1=reverselinkedlist(head1);
+        head2=reverselinkedlist(head2);
+        ListNode curr1=head1;
+        ListNode curr2=head2;
+        int carry=0;
+        while(curr1!=null || curr2!=null|| carry!=0){
+            int sum=carry;
+            if(curr1!=null){
+              sum+=curr1.val;
+              curr1=curr1.next;
+            }
+            if(curr2!=null){
+              sum+=curr2.val;
+              curr2=curr2.next;
+            }
+            carry=sum/10;
+            temp.next= new ListNode(sum%10);
+            temp=temp.next;
+        }
+     return reverselinkedlist(dummy.next);
+}
