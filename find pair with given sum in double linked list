@@ -1,0 +1,50 @@
+time-o(n2)
+space-o(1)
+class Solution{
+  public static List<List<Integer>> findpairwithsum(ListNode head,int sum){
+     List<List<Integer>> ds=new ArrayList<>();
+     ListNode temp1=head;
+     while(temp1!=null){
+         ListNode temp2=temp1.next;
+         while(temp2!=null){
+              if(temp1.val+temp2.val==sum){
+                 ds.add(Arrays.asList(temp1.val,temp2.val));
+              }
+             temp2=temp2.next;
+         }
+      temp1=temp1.next;
+    }
+ return ds;
+}
+optimal using twopointers 
+time=o(n)
+space-o(1)
+class Solution{
+   public  ListNode findtail(ListNode head){
+     ListNode tail=head;
+     while(tail.next!=null){
+       tail=tail.next;
+     }
+    return tail;
+   }
+  public List<List<Integer>> findsuminlinkedlist(ListNode head ,int sum){
+     List<List<Integer>> ds=new ArrayList<>();
+     if(head==null) return ds;
+     ListNode left=head;
+     ListNode right=findtail(head);
+     while(left!=null && right!=null &&left!=right &&right.next!=left){
+         if(left.val+right.val==sum){
+            ds.add(Arrays.asList(left.val,right.val));
+            left=left.next;
+            right=right.prev;
+         }
+         else if(left.val+right.val<sum){
+              left=left.next;
+         }
+        else{
+           right=right.prev;
+        }
+    }
+    return ds;
+  }
+}
