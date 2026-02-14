@@ -1,0 +1,17 @@
+time-o(n)
+space-o(1)
+class Solution{
+    public ListNode removeduplicatesinsortedlist(ListNode head){
+        ListNode curr=head;
+        while(curr!=null && curr.next!=null){
+           ListNode nextnode=curr.next;
+           while(nextnode!=null && curr.val==nextnode.val){
+               nextnode=nextnode.next;
+           }
+           curr.next=nextnode;
+           if(nextnode!=null)  nextnode.prev=curr;
+           curr=curr.next; 
+        }
+     return head;
+    }
+}
