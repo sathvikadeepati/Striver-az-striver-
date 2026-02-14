@@ -1,0 +1,27 @@
+time-o(n)
+space-o(1)
+class Solution{
+   public static ListNode Deletenode(ListNode head,int key){
+      ListNode curr=head;
+      while(curr!=null){
+        ListNode nextNode = curr.next;
+         if(curr.val==key){
+            if(curr.prev==null){
+               head=curr.next;
+               if(head!=null){
+                  head.prev=null;
+               }
+            }
+            else{
+               curr.prev.next=curr.next;
+               if(curr.next!=null){
+                 curr.next.prev=curr.prev;
+               }
+            }
+         }
+        curr=nextNode;
+      }
+     return head;
+   }
+
+}
