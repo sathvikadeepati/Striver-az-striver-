@@ -1,0 +1,60 @@
+time-o(n*m)*2 +o(nmlognm)
+space-o(n*m)
+class Solution{
+public static ListNode flattenList(ListNode head){
+   ArrayList<Integer> a=new ArrayList<>();
+   ListNode curr=head;
+   while(curr!=null){
+     ListNode t2=curr;
+     while(t2!=null){
+        a.add(t2.val);
+        t2=t2.child;
+     }
+   curr=curr.next;
+   }
+  Collections.sort(a);
+  ListNode dummy=new ListNode(-1);
+  curr=dummy;
+  for(int val:a){
+    curr.child=new ListNode(val);
+    curr.child.next=null;
+    curr=curr.child;
+  }
+  return dummy.child;
+}
+}
+for merging -o(n1+n2) => o(m+m)=>o(2m)
+here we are doing for n times so n*o(2m)=> o(2nm)
+space-o(n) space complexity recursive stack space 
+class Solution{
+   public static ListNode mergelist(ListNode list1,ListNode list2){
+       ListNode dummy=new ListNode(-1);
+       ListNode curr=dummy;
+       while(list1!=null && list2!=null){
+          if(list1.val<list2.val){
+          curr.child=list1;
+          list1=list1.child;
+         }
+         else{
+          curr.child=list2;
+          list2=list2.child;
+         }
+      curr=curr.child;
+      curr.next=null;
+     }
+    if(list1!=null) curr.child=list1;
+    else curr.child=list2;
+   return dummy.child;
+ }
+public static ListNode flattenlist(ListNode head){
+  if(head==null || head.next==null) return head;
+   head.next=flattenlist(head.next);
+   head= mergelist(head,head.next);
+   head.next=null;
+   return head;
+}
+
+
+
+
+}
