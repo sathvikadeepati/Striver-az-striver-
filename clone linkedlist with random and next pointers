@@ -1,0 +1,53 @@
+time-o(n)
+space-o(n)
+class solution{
+ public static ListNode clonelinkedlist(ListNode head){
+   HashMap<ListNode,ListNode> mp=new HashMap<>();
+   ListNode curr=head;
+   while(curr!=null){
+     mp.put(curr,new ListNode(curr.val));
+     curr=curr.next;
+   }
+   curr=head;
+   while(curr!=null){
+     ListNode clone=mp.get(curr);
+     clone.next=mp.get(curr.next);
+     clone.random=mp.get(curr.random);
+     curr=curr.next;
+   }
+   return mp.get(head);
+ }
+}
+time-o(n)
+spaceo(1)
+class Solution{
+  public static ListNode clonelinkedlist(ListNode head){
+    if(head==null) return null;
+     ListNode curr=head;
+     while(curr!=null){
+      ListNode copy=new ListNode(curr.val);
+      copy.next=curr.next;
+      curr.next=copy;
+      curr=copy.next;
+     }
+    curr=head;
+    while(curr!=null){
+          if(curr.random!=null){
+            curr.next.random=curr.random.next;
+         }
+        curr=curr.next.next;
+    }
+ ListNode dummy=new ListNode(-1);
+ ListNode copy=dummy;
+ curr=head;
+ while(curr!=null){
+   copy.next=curr.next;
+   curr.next=curr.next.next;
+   curr=curr.next;
+   copy=copy.next;
+
+}
+return dummy.next;
+
+}
+}
